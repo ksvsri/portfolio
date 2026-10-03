@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.sites-runtime/
+*.tsbuildinfo
+*.log
+test-results/
+playwright-report/
+.openai/ 
