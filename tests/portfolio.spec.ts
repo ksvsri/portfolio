@@ -17,10 +17,11 @@ test('portfolio journeys and local contact preview', async ({ page }, testInfo) 
   await expect(page.locator('body')).toHaveCSS('background-color', 'rgb(255, 250, 246)');
   await expect(page.getByRole('img', { name: 'Endava logo' })).toHaveAttribute(
     'src',
-    '/endava-logo.svg',
+    '/Endava.jpeg',
   );
-  const logo = await page.request.get('/endava-logo.svg');
+  const logo = await page.request.get('/Endava.jpeg');
   expect(logo.status()).toBe(200);
+  expect(logo.headers()['content-type']).toContain('image/jpeg');
   expect(
     await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth),
   ).toBeTruthy();

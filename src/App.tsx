@@ -30,15 +30,25 @@ const nav = [
   ['skills', 'Skills'],
   ['contact', 'Contact'],
 ];
-function Reveal({ children, className = '' }: { children: ReactNode; className?: string }) {
+function Reveal({
+  children,
+  className = '',
+  side = 'left',
+}: {
+  children: ReactNode;
+  className?: string;
+  side?: 'left' | 'right' | 'center';
+}) {
   const reduce = useReducedMotion();
+  const xOffset = side === 'left' ? -46 : side === 'right' ? 46 : 0;
+
   return (
     <motion.div
       className={className}
-      initial={reduce ? false : { opacity: 0, y: 25 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={reduce ? false : { opacity: 0, x: xOffset, y: 18 }}
+      whileInView={{ opacity: 1, x: 0, y: 0 }}
       viewport={{ once: true, amount: 0.12 }}
-      transition={{ duration: 0.65 }}
+      transition={{ duration: 0.7, ease: 'easeOut' }}
     >
       {children}
     </motion.div>
@@ -131,10 +141,7 @@ export default function App() {
       </a>
       <header>
         <a className="brand" href="#home" aria-label="Sai Kobbarisetti home">
-          <span className="brand-symbol">s</span>
-          <span>
-            SAI <span className="slash">/</span> PORTFOLIO
-          </span>
+          <img className="brand-mark" src="/portfolio/favicon.svg" alt="Sai Kobbarisetti icon" />
         </a>
         <nav aria-label="Main navigation" className={menu ? 'open' : ''}>
           {nav.map(([id, name]) => (
@@ -193,7 +200,7 @@ export default function App() {
                 <div className="hero-buttons">
                   <a
                     className="button primary"
-                    href="/sai-kobbarisetti-resume.jpg"
+                    href="/portfolio/sai-kobbarisetti-resume.jpg"
                     target="_blank"
                     rel="noreferrer"
                   >
@@ -221,15 +228,22 @@ export default function App() {
               <div className="profile-art">
                 <div className="profile-art-head mono">
                   <span>ENGINEERING, WITH INTENT.</span>
-                  <span>01 — 26</span>
                 </div>
                 <div className="orbit-art" aria-hidden="true">
+                  <span className="orbit-ring ring-one" />
+                  <span className="orbit-ring ring-two" />
+                  <span className="orbit-ring ring-three" />
+                  <span className="orbit-track track-one">
+                    <span className="orbit-dot dot-one" />
+                  </span>
+                  <span className="orbit-track track-two">
+                    <span className="orbit-dot dot-two" />
+                  </span>
+                  <span className="orbit-track track-three">
+                    <span className="orbit-dot dot-three" />
+                  </span>
                   <span className="monogram">SK</span>
                   <span className="orbit-caption">BUILD. CONNECT. REFINE.</span>
-                </div>
-                <div className="profile-signature">
-                  <span>SAI KOBBARISETTI</span>
-                  <span className="mono">SOFTWARE ENGINEER</span>
                 </div>
               </div>
               <div className="profile-detail">
@@ -271,7 +285,7 @@ export default function App() {
           </div>
         </section>
         <section id="about" className="container section">
-          <Reveal>
+          <Reveal side="left">
             <SectionTitle number="01" label="ABOUT ME" title="ENGINEER. BUILDER. PROBLEM SOLVER." />
             <div className="about-grid">
               <div>
@@ -288,14 +302,6 @@ export default function App() {
                   From reactive APIs and payment workflows to assessment interfaces, I care about
                   the details—and the bigger architecture they belong to.
                 </p>
-                <a
-                  className="text-link"
-                  href="https://github.com/ksvsri"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  A little more on GitHub <ArrowUpRight size={16} />
-                </a>
               </div>
               <div className="metrics">
                 {[
@@ -305,12 +311,18 @@ export default function App() {
                   ['Microservices', 'ARCHITECTURE'],
                   ['Kafka', 'COMMUNICATION'],
                   ['PostgreSQL', 'DATABASE'],
-                ].map(([v, l]) => (
-                  <div key={l}>
-                    <span className="mono">{l}</span>
-                    <strong>{v}</strong>
-                    <span className="metric-plus">+</span>
-                  </div>
+                ].map(([v, l], index) => (
+                  <Reveal
+                    key={l}
+                    className="metric-card"
+                    side={index % 2 === 0 ? 'left' : 'right'}
+                  >
+                    <div>
+                      <span className="mono">{l}</span>
+                      <strong>{v}</strong>
+                      <span className="metric-plus">+</span>
+                    </div>
+                  </Reveal>
                 ))}
               </div>
             </div>
@@ -318,7 +330,7 @@ export default function App() {
         </section>
         <section id="experience" className="section experience-section">
           <div className="container">
-            <Reveal>
+            <Reveal side="right">
               <SectionTitle
                 number="02"
                 label="PRODUCTION EXPERIENCE"
@@ -327,7 +339,7 @@ export default function App() {
               />
               <div className="experience-row">
                 <div className="company-mark">
-                  <img src="/endava-logo.svg" alt="Endava logo" width="68" height="68" />
+                  <img src="/portfolio/image.png" alt="Company logo" width="68" height="68" />
                 </div>
                 <div>
                   <h3>Endava Solutions India Private Limited</h3>
@@ -351,7 +363,7 @@ export default function App() {
           </div>
         </section>
         <section id="projects" className="container section">
-          <Reveal>
+          <Reveal side="left">
             <SectionTitle
               number="03"
               label="PROJECT CASE STUDIES"
@@ -482,33 +494,39 @@ export default function App() {
         </section>
 
         <section id="skills" className="container section skills-section">
-          <Reveal>
+          <Reveal side="right">
             <SectionTitle number="04" label="THE TOOLKIT" title="BUILT ON A STRONG FOUNDATION." />
             <div className="skill-map">
               <div className="skill-root">
                 <Cpu size={22} />
-                <span>SAI’S ENGINEERING STACK</span>
-                <span className="mono muted">A CONNECTED TOOLKIT</span>
+                <span>ENGINEERING STACK</span>
+                
               </div>
               <div className="skill-branches">
                 {skills.map(([category, ...list], i) => (
-                  <div className="skill-branch" key={category}>
-                    <div className="eyebrow">
-                      <span>0{i + 1}</span> {category}
+                  <Reveal
+                    key={category}
+                    className="skill-tile"
+                    side={i % 2 === 0 ? 'left' : 'right'}
+                  >
+                    <div className="skill-branch">
+                      <div className="eyebrow">
+                        <span>0{i + 1}</span> {category}
+                      </div>
+                      <div>
+                        {list.map((skill) => (
+                          <span tabIndex={0} key={skill}>
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
                     </div>
-                    <div>
-                      {list.map((skill) => (
-                        <span tabIndex={0} key={skill}>
-                          {skill}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
+                  </Reveal>
                 ))}
               </div>
             </div>
           </Reveal>
-          <Reveal className="performance">
+          <Reveal className="performance" side="center">
             <h3>
               Built to work.
               <br />
@@ -534,21 +552,27 @@ export default function App() {
                   'Caffeine / persistence',
                   'Think carefully about cache behavior and database access patterns.',
                 ],
-              ].map(([Icon, title, tech, desc]) => {
+              ].map(([Icon, title, tech, desc], index) => {
                 const I = Icon as typeof Activity;
                 return (
-                  <div key={String(title)}>
-                    <I size={23} />
-                    <h4>{String(title)}</h4>
-                    <span className="mono blue">{String(tech)}</span>
-                    <p>{String(desc)}</p>
-                  </div>
+                  <Reveal
+                    key={String(title)}
+                    className="performance-card"
+                    side={index % 2 === 0 ? 'left' : 'right'}
+                  >
+                    <div>
+                      <I size={23} />
+                      <h4>{String(title)}</h4>
+                      <span className="mono blue">{String(tech)}</span>
+                      <p>{String(desc)}</p>
+                    </div>
+                  </Reveal>
                 );
               })}
             </div>
           </Reveal>
         </section>
-        <section className="journey-section section">
+        <section className="section journey-section">
           <div className="container">
             <Reveal>
               <SectionTitle
@@ -609,7 +633,7 @@ export default function App() {
             <div className="resume-actions">
               <a
                 className="text-link"
-                href="/sai-kobbarisetti-resume.jpg"
+                href="/portfolio/sai-kobbarisetti-resume.jpg"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -618,7 +642,7 @@ export default function App() {
               <a
                 className="button secondary"
                 download="Sai-Kobbarisetti-Resume.jpg"
-                href="/sai-kobbarisetti-resume.jpg"
+                href="/portfolio/sai-kobbarisetti-resume.jpg"
               >
                 Download <Download size={16} />
               </a>
@@ -743,8 +767,8 @@ export default function App() {
         </section>
       </main>
       <footer className="container">
-        <a className="brand" href="#home">
-          <span className="brand-symbol">s</span> SAI / PORTFOLIO
+        <a className="brand" href="#home" aria-label="Sai Kobbarisetti home">
+          <img className="brand-mark" src="/portfolio/favicon.svg" alt="Sai Kobbarisetti icon" />
         </a>
         <span className="mono">THOUGHTFULLY ENGINEERED. ALWAYS EVOLVING.</span>
         <a href="#home" className="mono">

@@ -186,6 +186,13 @@ header {
   font-weight: 650;
   letter-spacing: 1.5px;
 }
+.brand-mark {
+  width: 32px;
+  height: 32px;
+  display: block;
+  object-fit: contain;
+  border-radius: 10px;
+}
 .brand-symbol {
   font-family: 'Poppins', sans-serif;
   font-style: italic;
@@ -756,15 +763,25 @@ nav a.current:after {
   border-block: 1px solid #353e2d;
 }
 .company-mark {
-  width: 57px;
-  height: 57px;
-  background: #262e20;
-  border: 1px solid #48573a;
-  font-size: 38px;
+  width: 64px;
+  height: 64px;
+  background: transparent;
+  border: 1px solid rgba(216, 198, 180, 0.75);
   display: flex;
   align-items: center;
   justify-content: center;
-  letter-spacing: -5px;
+  overflow: hidden;
+  border-radius: 10px;
+  padding: 2px;
+}
+.company-mark img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  filter: none;
+  background: transparent;
 }
 .company-mark span {
   font-size: 19px;

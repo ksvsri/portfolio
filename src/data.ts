@@ -134,6 +134,7 @@ export const skills = [
   ['Infrastructure', 'Docker', 'Podman'],
   ['Security', 'Jasypt', 'Argon2'],
   ['AI', 'LLM integration'],
+  ['DSA', 'Arrays', 'Strings', 'Trees', 'Graphs', 'Dynamic Programming', 'Hashing'],
 ];
 export const notes = [
   [
