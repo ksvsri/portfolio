@@ -200,7 +200,7 @@ export default function App() {
                 <div className="hero-buttons">
                   <a
                     className="button primary"
-                    href="/portfolio/sai-kobbarisetti-resume.jpg"
+                    href="/portfolio/Sai%20_resume.pdf"
                     target="_blank"
                     rel="noreferrer"
                   >
@@ -633,7 +633,7 @@ export default function App() {
             <div className="resume-actions">
               <a
                 className="text-link"
-                href="/portfolio/sai-kobbarisetti-resume.jpg"
+                href="/portfolio/Sai%20_resume.pdf"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -641,8 +641,8 @@ export default function App() {
               </a>
               <a
                 className="button secondary"
-                download="Sai-Kobbarisetti-Resume.jpg"
-                href="/portfolio/sai-kobbarisetti-resume.jpg"
+                download="Sai-Kobbarisetti-Resume.pdf"
+                href="/portfolio/Sai%20_resume.pdf"
               >
                 Download <Download size={16} />
               </a>
