@@ -957,9 +957,14 @@ h3 {
   display: none;
 }
 .skill-branches > .skill-tile {
-  display: block;
+  display: flex;
+  height: 100%;
 }
 .skill-branch {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
   background: #ffffff;
   border: 1px solid rgba(26, 26, 26, 0.08);
   border-radius: 14px;
@@ -990,6 +995,8 @@ h3 {
   gap: 8px;
   display: flex;
   flex-wrap: wrap;
+  align-content: flex-start;
+  flex: 1;
 }
 .skill-branch > div:last-child > span {
   background: rgba(255, 255, 255, 0.8);
@@ -1622,6 +1629,48 @@ footer > a.mono {
   .performance-grid .mono {
     font-size: 8px;
   }
+  .section-heading {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    margin-bottom: 28px;
+  }
+  .section-heading > p {
+    justify-self: start;
+    max-width: none;
+    margin-top: 0;
+  }
+  .experience-row {
+    flex-direction: column;
+    align-items: stretch;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  .experience-row > div {
+    width: 100%;
+  }
+  .experience-row > div:nth-child(2) {
+    flex: 1 1 100%;
+  }
+  .experience-date {
+    width: 100%;
+    margin-left: 0;
+    text-align: left;
+  }
+  .experience-summary {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .experience-summary .text-link {
+    grid-column: auto;
+  }
+  .journey-section > .container {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  .timeline {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
   .contact-grid {
     gap: 28px;
   }
@@ -1653,7 +1702,17 @@ footer > a.mono {
   .resume-actions .text-link {
     font-size: 10px;
   }
+  .journey-section > .container {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  .timeline {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
   .experience-row {
+    flex-direction: column;
+    align-items: stretch;
     padding: 25px;
   }
   .experience-row h3 {
@@ -1847,17 +1906,61 @@ footer > a.mono {
     padding-block: 36px;
   }
   .section-heading {
+    display: block;
     margin-bottom: 32px;
   }
   .section-heading h2 {
-    font-size: 32px;
-    line-height: 1.2;
-    letter-spacing: -1.1px;
+    font-size: clamp(40px, 12vw, 58px);
+    line-height: 0.96;
+    letter-spacing: -2px;
   }
   .section-heading > p {
     font-size: 13px;
     max-width: none;
-    margin-top: 20px;
+    margin-top: 18px;
+  }
+  .experience-row {
+    flex-direction: column;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    gap: 12px;
+    padding: 20px;
+  }
+  .experience-row > div {
+    width: 100%;
+  }
+  .company-mark {
+    width: 46px;
+    height: 46px;
+  }
+  .experience-row h3 {
+    font-size: 18px;
+    line-height: 1.4;
+  }
+  .experience-date {
+    width: 100%;
+    margin-left: 0;
+    text-align: left;
+  }
+  .experience-date span {
+    display: block;
+    margin-top: 6px;
+  }
+  .experience-summary {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding-top: 20px;
+  }
+  .journey-section > .container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .timeline {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .timeline > div {
+    padding-right: 0;
   }
   .eyebrow {
     font-size: 8px;
